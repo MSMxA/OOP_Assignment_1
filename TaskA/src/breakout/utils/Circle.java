@@ -9,33 +9,48 @@ public class Circle {
 	
 	/**
 	 * TODO spec
+	 * spec by Martijn
+	 * @invar center != null
+	 * @invar diameter != null
+	 * @invar center.getX() >= 0
+	 * 
 	 */
 	private final Point center;
 	private final int diameter;
 	
 	/**
-	 * Construct a circle with a given center point and diameter.
-	 * 
+	 * Method and specs by Martijn
 	 * TODO
+	 * Constructs a circle with a given center point and diameter.
+	 * 
+	 * @pre | center != null
+	 * @pre | diameter >= 0
+	 * 
+	 * 
 	 */
 	public Circle(Point center, int diameter) {
-		this.center = null;
-		this.diameter = 0;
+		this.center = center;
+		this.diameter = diameter;
 	}
 	
 	/**
+	 * Method by Martijn
+	 * Returns the center of this circle
+	 * 
 	 * TODO
 	 */
 	public Point getCenter() {
-		return null;
+		return this.center;
 	}
 
 	/**
+	 * Method by Martijn
 	 * Return the diameter of this circle
+	 *  
 	 * TODO
 	 */ 
 	public int getDiameter() {
-		return 0;
+		return this.diameter;
 	}
 
 	/**
@@ -117,11 +132,18 @@ public class Circle {
 	}
 
 	/**
+	 * Method & specs by Martijn
 	 * Return a circle with the given `center` and the same diameter as this one.
+	 * @pre | c != null
+	 * @post | result != null
+	 * @post | result.getDiameter() == this.getDiameter()
+	 * @post | result.getCenter() == c
+	 * 
 	 * TODO
+	 * 
 	 */
 	public Circle withCenter(Point c) {
-		return null;
+		return new Circle(c, this.diameter);
 	}
 	
 	@Override

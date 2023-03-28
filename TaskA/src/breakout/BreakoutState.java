@@ -172,11 +172,23 @@ public class BreakoutState {
 	/**
 	 * Returns null if ball is below the game field.
 	 * Else just returns ball
-	 * 
+	 * Attempted by Martijn, it is not quite correct yet
 	 * TODO
 	 */
 	private Ball removeDead(Ball ball) {
-		return null;
+		Circle locationOfBall = ball.getLocation();
+		Point centerOfBall = locationOfBall.getCenter();
+		int yCoordinateOfBall = centerOfBall.getY();
+		
+		Point centerOfPaddle = paddle.getCenter();
+		int yCoordinateOfPaddle = centerOfPaddle.getY();
+		
+		if  (yCoordinateOfBall >= yCoordinateOfPaddle){
+			return ball;
+			}
+		else{
+			return null;
+		}
 	}
 
 	/**

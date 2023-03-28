@@ -17,12 +17,14 @@ public class Vector {
 
 	/**
 	 * Return a new Coordinate with given x and y coordinates.
-	 * 
+	 * Method by Martijn
 	 * TODO
+	 * 
+	 * 
 	 */
 	public Vector(int x, int y) {
-		this.x = 0;
-		this.y = 0;
+		this.x = x;
+		this.y = y;
 	}
 
 	@Override
@@ -61,20 +63,35 @@ public class Vector {
 	}
 
 	/**
+	 * Method & spec made by Martijn
 	 * Returns this vector multiplied by a given factor 
 	 * 
 	 * TODO
+	 * @pre since the playing area only has positive coordinates, factor should be positive or zero
+	 * 		| factor >= 0
+	 * @post the scaled vector should not contain any non-whole numbers
+	 * 		| result.getX() % 1 == 0 &&
+	 * 		| result.getY() % 1 == 0
+	 * 
+	 * 
 	 */
 	public Vector scaled(int factor) {
-		return null;
+		int x_scaled = x*factor;
+		int y_scaled = y*factor;
+		return new Vector(x_scaled, y_scaled);
 	}
 
 	/**
+	 * Method made by Martijn
 	 * Return the Coordinate obtained by adding this vector with vector `other`.
 	 * TODO
+	 * @pre | other != null
+	 * @post | result != null
+	 * @post | result.getX() == getX() + other.getX()
+	 * @post | result.getY() == getY() + other.getY()
 	 */
 	public Vector plus(Vector other) { 
-		return null;
+		return new Vector(x + other.x, y + other.y);
 	}
 
 	/**
