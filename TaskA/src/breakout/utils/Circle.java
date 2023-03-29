@@ -146,6 +146,16 @@ public class Circle {
 		return new Circle(c, this.diameter);
 	}
 	
+	
+	/**
+	 * Attempted by Renkun(not sure if there need an override toString function for circle)
+	 */
+	@Override
+	public int hashCode() {
+		return center.hashCode() ^ this.diameter;
+	}
+	
+	
 	@Override
 	// TODO: hashCode should be modified accordingly
 	public boolean equals(Object other) {
