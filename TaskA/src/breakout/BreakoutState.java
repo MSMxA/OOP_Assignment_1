@@ -216,7 +216,7 @@ public class BreakoutState {
 
 	/**
 	 * 
-	 * attempted by Renkun
+	 * attempted by Renkun(not sure how to change the color every collide)
 	 * @pre | paddleVel != null
 	 * @pre | ball != null
 	 * @post | ball.getVelocity().getY() == - old(ball.getVelocity().getY())
@@ -227,6 +227,7 @@ public class BreakoutState {
 		if (changed == true) {
 			Vector new_velocity = new Vector(ball.getVelocity().getX(),-ball.getVelocity().getY());
 			ball.setVelocity(new_velocity);
+			paddle = new PaddleState(paddle.getCenter(),paddle.getPossibleColors());
 		}
 		
 		
