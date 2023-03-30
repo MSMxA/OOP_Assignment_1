@@ -215,11 +215,21 @@ public class BreakoutState {
 	}
 
 	/**
+	 * 
+	 * attempted by Renkun
+	 * @pre | paddleVel != null
+	 * @pre | ball != null
+	 * @post | ball.getVelocity().getY() == - old(ball.getVelocity().getY())
 	 * TODO
 	 */
 	private void collideBallPaddle(Ball ball, Vector paddleVel) {
 		boolean changed = ball.hitPaddle(paddle.getLocation(), paddleVel);
-		//...
+		if (changed == true) {
+			Vector new_velocity = new Vector(ball.getVelocity().getX(),-ball.getVelocity().getY());
+			ball.setVelocity(new_velocity);
+		}
+		
+		
 	}
 
 	/**
