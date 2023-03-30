@@ -370,16 +370,27 @@ public class BreakoutState {
 	}
 
 	/**
+	 * method by Renkun
 	 * TODO
 	 */
 	public boolean isWon() {
-		return true;
-	}
+		if (blocks == null) {
+			return true;
+			}
+			else
+				return false;
+		}
+	
 
 	/**
+	 * method by Renkun
 	 * TODO
 	 */
 	public boolean isDead() {
+		if (balls == null) {
 		return true;
+		}
+		else
+			return false;
 	}
 }
