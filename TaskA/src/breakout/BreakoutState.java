@@ -172,18 +172,17 @@ public class BreakoutState {
 	/**
 	 * Returns null if ball is below the game field.
 	 * Else just returns ball
-	 * Attempted by Martijn, it is not quite correct yet
+	 * Method by Martijn
 	 * TODO
 	 */
 	private Ball removeDead(Ball ball) {
 		Circle locationOfBall = ball.getLocation();
-		Point centerOfBall = locationOfBall.getCenter();
-		int yCoordinateOfBall = centerOfBall.getY();
+		Point bottomOfBall = locationOfBall.getBottommostPoint();
+		int yCoordinateOfBall = bottomOfBall.getY();
 		
-		Point centerOfPaddle = paddle.getCenter();
-		int yCoordinateOfPaddle = centerOfPaddle.getY();
 		
-		if  (yCoordinateOfBall >= yCoordinateOfPaddle){
+		
+		if  (yCoordinateOfBall <= bottomRight.getY()){
 			return ball;
 			}
 		else{
@@ -372,6 +371,8 @@ public class BreakoutState {
 	/**
 	 * method by Renkun
 	 * TODO
+	 * @post result == (getBlocks().length == 0)
+	 * @pre isDead().equals(false)
 	 */
 	public boolean isWon() {
 		if (blocks == null) {
@@ -385,6 +386,8 @@ public class BreakoutState {
 	/**
 	 * method by Renkun
 	 * TODO
+	 * @pre isWon().equals(false)
+	 * @post result == (getBlocks.length == 0)
 	 */
 	public boolean isDead() {
 		if (balls == null) {

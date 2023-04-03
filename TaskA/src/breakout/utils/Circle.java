@@ -4,15 +4,20 @@ package breakout.utils;
  * Represents a circle in a 2-dimensional integer coordinate system. 
  *
  * TODO spec
+ * @immutable
+ * @invar getCenter() != null
+ * @invar getDiameter() >= 0
  */
 public class Circle {
 	
 	/**
 	 * TODO spec
 	 * spec by Martijn
-	 * @invar center != null
-	 * @invar diameter != null
-	 * @invar center.getX() >= 0
+	 * @pre center != null
+	 * @pre diameter >= 0
+	 * @post center.getX() >= 0
+	 * @post getCenter.equals(center)
+	 * @post getDiameter == diameter
 	 * 
 	 */
 	private final Point center;
@@ -73,7 +78,7 @@ public class Circle {
 	}
 	
 	/**
-	 * Return the rightmost point of this circle.
+	 * Return the leftmost point of this circle.
 	 * 
 	 * @post | result != null 
 	 * @post | result.equals(getCenter().plus(Vector.LEFT.scaled(getRadius())))
@@ -83,7 +88,7 @@ public class Circle {
 	}
 	
 	/**
-	 * Return the rightmost point of this circle.
+	 * Return the upper point of this circle.
 	 * 
 	 * @post | result != null 
 	 * @post | result.equals(getCenter().plus(Vector.UP.scaled(getRadius())))
@@ -92,7 +97,7 @@ public class Circle {
 		return getOutermostPoint(Vector.UP);
 	}
 	/**
-	 * Return the rightmost point of this circle.
+	 * Return the bottom point of this circle.
 	 * 
 	 * @post | result != null 
 	 * @post | result.equals(getCenter().plus(Vector.DOWN.scaled(getRadius())))

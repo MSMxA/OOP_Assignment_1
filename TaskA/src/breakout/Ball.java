@@ -112,7 +112,7 @@ public class Ball {
 	/**
 	 * LEGIT
 	 * 
-	 * return true iff the ball `hitRect`s rect.
+	 * return true if the ball `hitRect`s rect.
 	 */
 	public boolean hitPaddle(Rect rect, Vector paddleVel) {
 		if (collidesWith(rect)) { //in case of a bounce, ball velocity is slightly affected by paddle

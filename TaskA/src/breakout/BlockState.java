@@ -6,6 +6,8 @@ import breakout.utils.Rect;
  * Represents the state of a block in the breakout.good game.
  *
  * TODO spec
+ * @immutable
+ * @invar getLocation() != null
  */
 public class BlockState {
 	
@@ -22,6 +24,7 @@ public class BlockState {
 	 * Construct a new Blockstate, represented by a rectangle at a given location
 	 * @pre | location != null
 	 * 
+	 * 
 	 */
 	public BlockState(Rect location) {
 		this.location = location;
@@ -31,6 +34,7 @@ public class BlockState {
 	 * TODO
 	 * Method & Specs by Martijn
 	 * returns the location of the Block
+	 * @post getLocation().equals(location)
 	 */
 	public Rect getLocation() {
 		return location;
