@@ -7,7 +7,7 @@ import breakout.utils.Rect;
  *
  * TODO spec
  * @immutable
- * @invar getLocation() != null
+ * @invar | getLocation() != null
  */
 public class BlockState {
 	
@@ -34,7 +34,6 @@ public class BlockState {
 	 * TODO
 	 * Method & Specs by Martijn
 	 * returns the location of the Block
-	 * @post getLocation().equals(location)
 	 */
 	public Rect getLocation() {
 		return location;

@@ -5,19 +5,19 @@ package breakout.utils;
  *
  * TODO spec
  * @immutable
- * @invar getCenter() != null
- * @invar getDiameter() >= 0
+ * @invar | getCenter() != null
+ * @invar | getDiameter() >= 0
  */
 public class Circle {
 	
 	/**
 	 * TODO spec
 	 * spec by Martijn
-	 * @pre center != null
-	 * @pre diameter >= 0
-	 * @post center.getX() >= 0
-	 * @post getCenter.equals(center)
-	 * @post getDiameter == diameter
+	 * @pre | center != null
+	 * @pre | diameter >= 0
+	 * @post | center.getX() >= 0
+	 * @post | getCenter.equals(center)
+	 * @post | getDiameter() == diameter
 	 * 
 	 */
 	private final Point center;
@@ -51,7 +51,6 @@ public class Circle {
 	/**
 	 * Method by Martijn
 	 * Return the diameter of this circle
-	 *  
 	 * TODO
 	 */ 
 	public int getDiameter() {
