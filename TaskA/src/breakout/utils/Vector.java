@@ -68,8 +68,7 @@ public class Vector {
 	 * Returns this vector multiplied by a given factor 
 	 * 
 	 * TODO
-	 * @pre since the playing area only has positive coordinates, factor should be positive or zero
-	 * 		| factor >= 0
+	 * 
 	 * @post the scaled vector should not contain any non-whole numbers
 	 * 		| result.getX() % 1 == 0 &&
 	 * 		| result.getY() % 1 == 0

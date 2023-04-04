@@ -23,6 +23,7 @@ public class BlockState {
 	 * Method & specs by Martijn
 	 * Construct a new Blockstate, represented by a rectangle at a given location
 	 * @pre | location != null
+	 * @post | getLocation().equals(location)
 	 * 
 	 * 
 	 */
@@ -36,7 +37,7 @@ public class BlockState {
 	 * returns the location of the Block
 	 */
 	public Rect getLocation() {
-		return location;
+		return  location;
 	}
 	
 }
