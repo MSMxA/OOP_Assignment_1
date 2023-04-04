@@ -27,6 +27,12 @@ public class Ball {
  	 * @post | getVelocity().equals(velocity)
 	 */
 	public Ball(Circle location, Vector velocity) {
+		if (location == null) {
+			throw new IllegalArgumentException("location is null");
+		}
+		if (velocity == null) {
+			throw new IllegalArgumentException("velocity is null");
+		}
 		this.location = new Circle( location.getCenter() , location.getDiameter());
 		this.velocity = new Vector( velocity.getX() , velocity.getY() );
 	}
@@ -47,10 +53,18 @@ public class Ball {
 	}
 	
 	public void setLocation(Circle location) {
+		if (location == null) {
+			throw new IllegalArgumentException("location is null");
+		}
+		else
 		this.location = new Circle( location.getCenter() , location.getDiameter());
 	}
 	
 	public void setVelocity(Vector velocity) {
+		if (velocity == null) {
+			throw new IllegalArgumentException("velocity is null");
+		}
+		else
 		this.velocity = new Vector( velocity.getX() , velocity.getY() );
 	}
 	
@@ -167,7 +181,7 @@ public class Ball {
 	 * @post | result == 35
 	 */
 	public int dummy() {
-		return 127;
+		return 35;
 	}
 	
 }
