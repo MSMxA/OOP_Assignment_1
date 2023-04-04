@@ -216,6 +216,14 @@ public class BreakoutState {
 	/**
 	 * 
 	 * attempted by Renkun(not sure how to change the color every collide)
+	 * Vector new_velocity = new Vector(ball.getVelocity().getX(),-ball.getVelocity().getY());
+			ball.setVelocity(new_velocity);
+			tossPaddleColor();
+			paddle = new PaddleState(paddle.getCenter(),curPaddleColor);
+			
+	 * Martijn: "I think you just need to change the color, everything else is done by 'bounceBallsOnPaddle()'
+	 * I tried this and it works in-game :)
+	 * 
 	 * @pre | paddleVel != null
 	 * @pre | ball != null
 	 * @post | ball.getVelocity().getY() == - old(ball.getVelocity().getY())
@@ -224,9 +232,7 @@ public class BreakoutState {
 	private void collideBallPaddle(Ball ball, Vector paddleVel) {
 		boolean changed = ball.hitPaddle(paddle.getLocation(), paddleVel);
 		if (changed == true) {
-			Vector new_velocity = new Vector(ball.getVelocity().getX(),-ball.getVelocity().getY());
-			ball.setVelocity(new_velocity);
-			paddle = new PaddleState(paddle.getCenter(),paddle.getPossibleColors());
+			tossPaddleColor();
 		}
 		
 		

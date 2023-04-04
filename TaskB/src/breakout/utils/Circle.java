@@ -4,38 +4,57 @@ package breakout.utils;
  * Represents a circle in a 2-dimensional integer coordinate system. 
  *
  * TODO spec
+ * @immutable
+ * @invar | getCenter() != null
+ * @invar | getDiameter() >= 0
  */
 public class Circle {
 	
 	/**
 	 * TODO spec
+	 * spec by Martijn
+	 * @pre | center != null
+	 * @pre | diameter >= 0
+	 * @post | center.getX() >= 0
+	 * @post | getCenter.equals(center)
+	 * @post | getDiameter() == diameter
+	 * 
 	 */
 	private final Point center;
 	private final int diameter;
 	
 	/**
-	 * Construct a circle with a given center point and diameter.
-	 * 
+	 * Method and specs by Martijn
 	 * TODO
+	 * Constructs a circle with a given center point and diameter.
+	 * 
+	 * @pre | center != null
+	 * @pre | diameter >= 0
+	 * 
+	 * 
 	 */
 	public Circle(Point center, int diameter) {
-		this.center = null;
-		this.diameter = 0;
+		this.center = center;
+		this.diameter = diameter;
 	}
 	
 	/**
+	 * Method by Martijn
+	 * Returns the center of this circle
+	 * 
 	 * TODO
 	 */
 	public Point getCenter() {
-		return null;
+		return this.center;
 	}
 
 	/**
+	 * Method by Martijn
 	 * Return the diameter of this circle
 	 * TODO
 	 */ 
 	public int getDiameter() {
-		return 0;
+		return this.diameter;
 	}
 
 	/**
@@ -58,7 +77,7 @@ public class Circle {
 	}
 	
 	/**
-	 * Return the rightmost point of this circle.
+	 * Return the leftmost point of this circle.
 	 * 
 	 * @post | result != null 
 	 * @post | result.equals(getCenter().plus(Vector.LEFT.scaled(getRadius())))
@@ -68,7 +87,7 @@ public class Circle {
 	}
 	
 	/**
-	 * Return the rightmost point of this circle.
+	 * Return the upper point of this circle.
 	 * 
 	 * @post | result != null 
 	 * @post | result.equals(getCenter().plus(Vector.UP.scaled(getRadius())))
@@ -77,7 +96,7 @@ public class Circle {
 		return getOutermostPoint(Vector.UP);
 	}
 	/**
-	 * Return the rightmost point of this circle.
+	 * Return the bottom point of this circle.
 	 * 
 	 * @post | result != null 
 	 * @post | result.equals(getCenter().plus(Vector.DOWN.scaled(getRadius())))
@@ -117,12 +136,29 @@ public class Circle {
 	}
 
 	/**
+	 * Method & specs by Martijn
 	 * Return a circle with the given `center` and the same diameter as this one.
+	 * @pre | c != null
+	 * @post | result != null
+	 * @post | result.getDiameter() == this.getDiameter()
+	 * @post | result.getCenter() == c
+	 * 
 	 * TODO
+	 * 
 	 */
 	public Circle withCenter(Point c) {
-		return null;
+		return new Circle(c, this.diameter);
 	}
+	
+	
+	/**
+	 * Attempted by Renkun(not sure if there need an override toString function for circle)
+	 */
+	@Override
+	public int hashCode() {
+		return center.hashCode() ^ this.diameter;
+	}
+	
 	
 	@Override
 	// TODO: hashCode should be modified accordingly
