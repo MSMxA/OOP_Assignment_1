@@ -99,7 +99,7 @@ public class BreakoutState {
 	 * Return the balls of this BreakoutState.
 	 */
 	public Ball[] getBalls() {
-		return balls;
+		return balls.clone();
 	}
 
 	/**
@@ -108,7 +108,7 @@ public class BreakoutState {
 	 * @creates | result
 	 */
 	public BlockState[] getBlocks() {
-		return blocks;
+		return blocks.clone();
 	}
 
 	/**
@@ -128,7 +128,7 @@ public class BreakoutState {
 	public void tossPaddleColor() {
 		Random rand = new Random();
 		int randInt = rand.nextInt( paddle.getPossibleColors().length );
-		curPaddleColor = Color.pink;
+		curPaddleColor = paddle.getPossibleColors()[randInt];
 	}
 
 	/**
@@ -158,11 +158,14 @@ public class BreakoutState {
 		return getFieldInternal();
 	}
 	
+	/*
+	 * Martijn: I chanegd this to prevent the ball from respawning at the middle (deleted '/2' after bottomright.getX())
+	 */
 	private void bounceWalls(Ball ball) {
 		for (Rect wall : walls) {
 			boolean res = ball.hitRect(wall);
 			if (res) {
-				int newX = bottomRight.getX() / 2;
+				int newX = bottomRight.getX();
 				ball.setLocation( new Circle( new Point(newX, ball.getCenter().getY()) , Constants.INIT_BALL_DIAMETER) );
 			}
 		}
@@ -172,7 +175,7 @@ public class BreakoutState {
 	/**
 	 * Returns null if ball is below the game field.
 	 * Else just returns ball
-	 * Method by Martijn
+	 * Method by Martijn (could be made shorter, maybe i'll edit later)
 	 * TODO
 	 */
 	private Ball removeDead(Ball ball) {
@@ -198,15 +201,19 @@ public class BreakoutState {
 		b.setLocation(loc);
 	}
 	
+	/**
+	 * 
+	 * Martijn: 'I changed the movePaddleRight(200) to (0), because it makes no sense to move the paddle when you hit a block
+	 */
 	private void collideBallBlocks(Ball ball) {
 		for (BlockState block : blocks) {
 			boolean res = ball.hitRect( block.getLocation() );
 			if (res) {
 				if (ball.getCenter().getX() <= bottomRight.getX() / 2) {
-					movePaddleRight(200);
+					movePaddleRight(0);
 				}
 				else {
-					movePaddleLeft(200);
+					movePaddleLeft(0);
 				}
 				removeBlock(block);
 			}
@@ -233,9 +240,7 @@ public class BreakoutState {
 		boolean changed = ball.hitPaddle(paddle.getLocation(), paddleVel);
 		if (changed == true) {
 			tossPaddleColor();
-		}
-		
-		
+		}		
 	}
 
 	/**
@@ -375,29 +380,31 @@ public class BreakoutState {
 	}
 
 	/**
-	 * method by Renkun
+	 * method by Renkun, edit by Martijn
 	 * TODO
 	 * @post | result == (getBlocks().length == 0)
 	 */
 	public boolean isWon() {
-		if (blocks == null) {
+		if (blocks.length == 0) {
 			return true;
 			}
-			else
-				return false;
+		else {
+			return false;
 		}
+	}
 	
 
 	/**
-	 * method by Renkun
+	 * method by Renkun, edit by Martijn
 	 * TODO
-	 * @post | result == (getBlocks().length == 0)
+	 * @post | result == (getBalls().length == 0)
 	 */
 	public boolean isDead() {
-		if (balls == null) {
+		if (balls.length == 0) {
 		return true;
 		}
-		else
-			return false;
+		else {
+			return false;	
+		}
 	}
 }
