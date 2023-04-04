@@ -38,8 +38,14 @@ public class PaddleState {
 	 * @post | Arrays.equals(possibleColors , getPossibleColors())
 	 */
 	public PaddleState(Point center, Color[] possibleColors) {
+		if (center == null) {
+			throw new IllegalArgumentException("center is null");
+		}
+		if (possibleColors == null) {
+			throw new IllegalArgumentException("colorset is null");
+		}
 		this.center = center;
-		this.possibleColors = possibleColors;
+		this.possibleColors = possibleColors.clone();
 	}
 	
 	/**
@@ -50,7 +56,7 @@ public class PaddleState {
 	}
 
 	public Color[] getPossibleColors() {
-		return possibleColors;
+		return possibleColors.clone();
 	}
 
 	/**
