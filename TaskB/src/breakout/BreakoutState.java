@@ -165,8 +165,22 @@ public class BreakoutState {
 		for (Rect wall : walls) {
 			boolean res = ball.hitRect(wall);
 			if (res) {
-				int newX = bottomRight.getX();
-				ball.setLocation( new Circle( new Point(newX, ball.getCenter().getY()) , Constants.INIT_BALL_DIAMETER) );
+				boolean hitRightWall = ball.hitRect(rightWall);
+				boolean hitLeftWall = ball.hitRect(leftWall);
+				boolean hitTopWall = ball.hitRect(topWall);
+				
+				if( hitRightWall) {
+					int newX = bottomRight.getX();
+					ball.setLocation( new Circle( new Point(newX, ball.getCenter().getY()) , Constants.INIT_BALL_DIAMETER) );
+				}
+				if(hitLeftWall) {
+					int newX = ball.getLocation().getLeftmostPoint().getX();
+					ball.setLocation( new Circle( new Point(newX, ball.getCenter().getY()) , Constants.INIT_BALL_DIAMETER) );
+				}
+				if(hitTopWall) {
+					int newY = ball.getLocation().getTopmostPoint().getY();
+					ball.setLocation( new Circle( new Point(newY, ball.getCenter().getY()) , Constants.INIT_BALL_DIAMETER) );
+				}
 			}
 		}
 	}
