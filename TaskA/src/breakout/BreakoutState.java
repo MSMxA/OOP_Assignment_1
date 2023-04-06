@@ -388,7 +388,7 @@ public class BreakoutState {
 	 * 
 	 */
 	public boolean isWon() {
-		if (blocks == null) {
+		if (blocks.length == 0) {
 			return true;
 			}
 			else
@@ -402,7 +402,7 @@ public class BreakoutState {
 	 * @post | result == (getBlocks().length == 0)
 	 */
 	public boolean isDead() {
-		if (balls == null) {
+		if (balls.length == 0) {
 		return true;
 		}
 		else

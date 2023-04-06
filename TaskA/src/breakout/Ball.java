@@ -167,7 +167,7 @@ public class Ball {
 	 * @post | result == 35
 	 */
 	public int dummy() {
-		return 127;
+		return 35;
 	}
 	
 }

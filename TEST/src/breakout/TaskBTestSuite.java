@@ -91,7 +91,7 @@ class TaskBTestSuite {
 	@Test
 	void dummyTest() {
 		
-		assertEquals( 35, aball.dummy() );
+		assertEquals(35, aball.dummy() );
 	}
 	@Test
 	void balltest() {
