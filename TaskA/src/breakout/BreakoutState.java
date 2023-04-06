@@ -172,8 +172,11 @@ public class BreakoutState {
 	/**
 	 * Returns null if ball is below the game field.
 	 * Else just returns ball
-	 * Method by Martijn
+	 * Method & specs by Martijn
+	 * @pre | ball != null
+	 * @post | ball.getLocation().getBottommostPoint().getY() <= bottomRight.getY() ? result.equals(ball) : result.equals(null)
 	 * TODO
+	 * 
 	 */
 	private Ball removeDead(Ball ball) {
 		Circle locationOfBall = ball.getLocation();
@@ -216,17 +219,21 @@ public class BreakoutState {
 	/**
 	 * 
 	 * attempted by Renkun(not sure how to change the color every collide)
+	 * pre | paddleVel != null
+	 * pre | ball != null
+	 * post | ball.getVelocity().getY() == - old(ball.getVelocity().getY())
 	 * Vector new_velocity = new Vector(ball.getVelocity().getX(),-ball.getVelocity().getY());
 			ball.setVelocity(new_velocity);
 			tossPaddleColor();
 			paddle = new PaddleState(paddle.getCenter(),curPaddleColor);
+	   
 			
 	 * Martijn: "I think you just need to change the color, everything else is done by 'bounceBallsOnPaddle()'
 	 * I tried this and it works in-game :)
 	 * 
-	 * @pre | paddleVel != null
-	 * @pre | ball != null
-	 * @post | ball.getVelocity().getY() == - old(ball.getVelocity().getY())
+	 *@pre | ball != null
+	 *@pre | paddleVel != null
+	 *
 	 * TODO
 	 */
 	private void collideBallPaddle(Ball ball, Vector paddleVel) {
@@ -378,6 +385,7 @@ public class BreakoutState {
 	 * method by Renkun
 	 * TODO
 	 * @post | result == (getBlocks().length == 0)
+	 * 
 	 */
 	public boolean isWon() {
 		if (blocks == null) {

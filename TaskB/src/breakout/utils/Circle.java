@@ -13,11 +13,11 @@ public class Circle {
 	/**
 	 * TODO spec
 	 * spec by Martijn
-	 * @pre | center != null
-	 * @pre | diameter >= 0
-	 * @post | center.getX() >= 0
-	 * @post | getCenter.equals(center)
-	 * @post | getDiameter() == diameter
+	 * @invar | center != null
+	 * @invar | diameter >= 0
+	 * @invar | center.getX() >= 0
+	 * @invar | getCenter().equals(center)
+	 * @invar | getDiameter() == diameter
 	 * 
 	 */
 	private final Point center;
@@ -30,16 +30,20 @@ public class Circle {
 	 * 
 	 * @pre | center != null
 	 * @pre | diameter >= 0
-	 * 
+	 * @post | getCenter().equals(center)
+	 * @post | getDiameter() == diameter
 	 * 
 	 */
 	public Circle(Point center, int diameter) {
+		if(diameter < 0) {
+			throw new IllegalArgumentException("'diameter' may not be negative");
+		}
 		this.center = center;
 		this.diameter = diameter;
 	}
 	
 	/**
-	 * Method by Martijn
+	 * Method by Martijn (the 'this.' is not really needed, but i'll leave it, because the method is simple)
 	 * Returns the center of this circle
 	 * 
 	 * TODO

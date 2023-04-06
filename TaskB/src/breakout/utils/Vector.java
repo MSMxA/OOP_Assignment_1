@@ -19,8 +19,8 @@ public class Vector {
 	 * Return a new Coordinate with given x and y coordinates.
 	 * Method by Martijn
 	 * TODO
-	 * @post getX() == x
-	 * @post getY() == y
+	 * @post | getX() == x
+	 * @post | getY() == y
 	 * 
 	 */
 	public Vector(int x, int y) {
@@ -72,9 +72,9 @@ public class Vector {
 	 * @post the scaled vector should not contain any non-whole numbers
 	 * 		| result.getX() % 1 == 0 &&
 	 * 		| result.getY() % 1 == 0
-	 * @post result != null
-	 * @post result.getX() == getX() * factor
-	 * @post result.getY() == getY() * factor
+	 * @post | result != null
+	 * @post | result.getX() == getX() * factor
+	 * @post | result.getY() == getY() * factor
 	 * 
 	 * 
 	 */

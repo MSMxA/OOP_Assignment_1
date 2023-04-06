@@ -35,6 +35,7 @@ public class BlockState {
 	 * TODO
 	 * Method & Specs by Martijn
 	 * returns the location of the Block
+	 * @post @ result != null
 	 */
 	public Rect getLocation() {
 		return  location;
