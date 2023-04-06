@@ -13,7 +13,7 @@ public class Rect {
 	 * @invar | topLeft != null
 	 * @invar | bottomRight != null
 	 * @invar | topLeft.getX() <= bottomRight.getX()
-	 * @invar | topLeft.getY() <= bottomRight.getY()
+	 * @invar | topLeft.getY() >= bottomRight.getY()
 	 */
 	private final Point topLeft;
 	private final Point bottomRight;

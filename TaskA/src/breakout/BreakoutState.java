@@ -394,7 +394,7 @@ public class BreakoutState {
 	}
 
 	/**
-	 * method by Renkun
+	 * 
 	 * TODO
 	 * @post | result == (getBlocks().length == 0)
 	 * 
@@ -409,7 +409,7 @@ public class BreakoutState {
 	
 
 	/**
-	 * method by Renkun
+	 * 
 	 * TODO
 	 * @post | result == (getBalls().length == 0)
 	 */
