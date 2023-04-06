@@ -182,10 +182,10 @@ class TaskBTestSuite {
 		assertEquals(bs2.getPaddle().getCenter(),new Point(5015,5000));
 		
 		
-		assertThrows(NullPointerException.class, () -> new BreakoutState(null, someblocks, BR, apad));
-		assertThrows(NullPointerException.class, () -> new BreakoutState(someballs, null , BR, apad));
-		assertThrows(NullPointerException.class, () -> new BreakoutState(someballs, someblocks, null, apad));
-		assertThrows(NullPointerException.class, () -> new BreakoutState(someballs, someblocks, BR, null));
+		assertThrows(IllegalArgumentException.class, () -> new BreakoutState(null, someblocks, BR, apad));
+		assertThrows(IllegalArgumentException.class, () -> new BreakoutState(someballs, null , BR, apad));
+		assertThrows(IllegalArgumentException.class, () -> new BreakoutState(someballs, someblocks, null, apad));
+		assertThrows(IllegalArgumentException.class, () -> new BreakoutState(someballs, someblocks, BR, null));
 		assertArrayEquals(someballs, BS.getBalls() );
 		assertArrayEquals(someblocks, BS.getBlocks());
 		assertEquals(bs2.getBottomRight(), bottomright);

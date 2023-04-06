@@ -68,13 +68,25 @@ public class BreakoutState {
 	 * @throws IllegalArgumentException | !(new Rect(Constants.ORIGIN,bottomRight)).contains(paddle.getLocation())
 	 * @throws IllegalArgumentException | !Arrays.stream(blocks).allMatch(b -> (new Rect(Constants.ORIGIN,bottomRight)).contains(b.getLocation()))
 	 * @throws IllegalArgumentException | !Arrays.stream(balls).allMatch(b -> (new Rect(Constants.ORIGIN,bottomRight)).contains(b.getLocation()))
+	 * @throws IllegalArgumentException | balls == null
+	 * @throws IllegalArgumentException | blocks == null
+	 * @throws IllegalArgumentException | bottomRight == null
+	 * @throws IllegalArgumentException | paddle == null
 	 * @post | Arrays.equals(getBalls(),balls)
 	 * @post | Arrays.equals(getBlocks(),blocks)
 	 * @post | getBottomRight().equals(bottomRight)
 	 * @post | getPaddle().equals(paddle)
 	 */
 	public BreakoutState(Ball[] balls, BlockState[] blocks, Point bottomRight, PaddleState paddle) {
-
+		if (balls == null) 
+			throw new IllegalArgumentException("balls is null");
+		if (blocks == null) 
+			throw new IllegalArgumentException("blocks is null");
+		if (bottomRight == null) 
+			throw new IllegalArgumentException("bottomRight is null");
+		if (paddle == null) 
+			throw new IllegalArgumentException("paddle is null");
+		
 		if(!Constants.ORIGIN.isUpAndLeftFrom(bottomRight)) throw new IllegalArgumentException();
 		this.bottomRight = bottomRight;
 		if(!getFieldInternal().contains(paddle.getLocation())) throw new IllegalArgumentException();
