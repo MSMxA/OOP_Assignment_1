@@ -27,7 +27,7 @@ public class Rect {
 	 * @pre | topLeft != null
 	 * @pre | bottomRight != null
 	 * @pre | topLeft.getX() <= bottomRight.getX()
-	 * @pre | topLeft.getY() <= bottomRight.getY()
+	 * @pre | topLeft.getY() >= bottomRight.getY()
 	 * @post | getTopLeft().equals(topLeft)
 	 * @post | getBottomRight().equals(bottomRight)
 	 */

@@ -411,7 +411,7 @@ public class BreakoutState {
 	/**
 	 * method by Renkun
 	 * TODO
-	 * @post | result == (getBlocks().length == 0)
+	 * @post | result == (getBalls().length == 0)
 	 */
 	public boolean isDead() {
 		if (balls.length == 0) {

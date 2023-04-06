@@ -256,7 +256,6 @@ public class BreakoutState {
 	 * 
 	 * @pre | paddleVel != null
 	 * @pre | ball != null
-	 * @post | ball.getVelocity().getY() == - old(ball.getVelocity().getY())
 	 * TODO
 	 */
 	private void collideBallPaddle(Ball ball, Vector paddleVel) {
