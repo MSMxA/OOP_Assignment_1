@@ -30,6 +30,18 @@ class TaskBTestSuite {
 	private Ball aball;
 	private Ball[] someballs;
 	private PaddleState apad;
+	private Color[] typicalColors = {Color.green, Color.magenta, Color.orange};
+	private Point p14;
+	private BreakoutState BS;
+	private static final String initMap = """
+		       
+		       
+			 o	       
+			###	       
+				       
+		     =
+
+				""";
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -57,6 +69,7 @@ class TaskBTestSuite {
 						, Constants.INIT_BALL_DIAMETER)
 					, Constants.INIT_BALL_VELOCITY);
 		someballs = new Ball[] { aball };
+		BS = new BreakoutState(someballs, someblocks, BR, apad);
 	}
 
 //	@Test
@@ -70,6 +83,11 @@ class TaskBTestSuite {
 //      abreakoutState.tickDuring( 200 );
 //	}
 	
+	
+	
+//NOTE: We did the tests both with new variables in each test as well as the variables in Setup()
+// So it might look a bit weird sometimes, but it works 
+	
 	@Test
 	void dummyTest() {
 		
@@ -77,23 +95,41 @@ class TaskBTestSuite {
 	}
 	@Test
 	void balltest() {
-		
-		
 		Point center = new Point(5,5);
-		Point ncenter = new Point(6,7);
 		Circle circle = new Circle(center,1);
-		Circle circlen = null;
 		Vector velocity = new Vector(1,2);
-		Vector velocity2 = new Vector(1,2);
-		Vector velocityn = null;
 		Ball ball = new Ball(circle,velocity);
-		assertThrows(IllegalArgumentException.class,() -> {Ball balln = new Ball(circlen,velocityn);});
-		assertThrows(IllegalArgumentException.class,() -> {ball.setLocation(circlen);});
-		assertThrows(IllegalArgumentException.class,() -> {ball.setVelocity(velocityn);});
-		//Exception test in ball class
+		assertThrows(IllegalArgumentException.class,() -> new Ball(circle, null));
+		assertThrows(IllegalArgumentException.class,() -> new Ball(null, velocity));
+		assertThrows(IllegalArgumentException.class,() -> {ball.setLocation(null);});
+		assertThrows(IllegalArgumentException.class,() -> {ball.setVelocity(null);});
 		
+		//test getters
+		assertEquals(ball.getLocation(), circle);
+		assertEquals(ball.getVelocity(), velocity);
+		
+		
+		//test setters
+		Ball ball2 = new Ball(circle,velocity);
+		Point center2 = new Point(10,10);
+		Circle circle2 = new Circle(center2,1);
+		ball2.setLocation(circle2);
+		assertEquals(ball2.getLocation(), circle2);
+		
+		Vector velocity2 = new Vector(100,200);
+		ball2.setVelocity(velocity2);
+		assertEquals(ball2.getVelocity(), velocity2);
 		
 	}
+	
+	@Test
+	void moveBalltest() {
+		Vector velocity = new Vector(1,2);
+		aball.move(velocity);
+		assertEquals(new Circle(new Point((BR.getX()/2)+1 , (Constants.HEIGHT/2)+2), Constants.INIT_BALL_DIAMETER), aball.getLocation());
+		
+	}
+	
 	@Test
 	void paddletest() {
 		Point center1 = new Point(5,5);
@@ -106,42 +142,72 @@ class TaskBTestSuite {
 		assertEquals( color[0].getRGB(), ncolor[0].getRGB());
 		color[0] = Color.green;
 		assertEquals( paddle1.getPossibleColors()[0].getRGB(), paddle2.getPossibleColors()[0].getRGB());
-		assertThrows(IllegalArgumentException.class,() -> {PaddleState paddlen = new PaddleState(null,null);});
+		//assertEquals(paddle1.getLocation(), new Rect(new Point(5-(Constants.PADDLE_WIDTH/2), 5-(Constants.PADDLE_HEIGHT/2)),
+		//			new Point(5+(Constants.PADDLE_WIDTH/2), 5+(Constants.PADDLE_HEIGHT/2))));
+		assertThrows(IllegalArgumentException.class,() -> {new PaddleState(p14,null);});
+		assertThrows(IllegalArgumentException.class,() -> {new PaddleState(null, typicalColors);});
+		assertNotNull(apad.getCenter());
+		assertNotNull(apad.getPossibleColors());
+		}
+		
 		//Representation leaking and Exception test in paddlestate class
 		
-	}
 	
 	@Test
 	void breakouttest() {
 		Point p1 = new Point(1,2);
 		Point p2 = new Point(3,1);
-		Point p3 = new Point(2,1);
+		Rect loc1 = new Rect(p1,p2);
+		
 		Point center = new Point(5000,5000);
-		Point center2 = new Point(6000,6000);
 		Circle circle = new Circle(center,1);
-		Circle circle2 = new Circle(center2,1);
+		
 		Vector velocity = new Vector(1,2);
-		Vector velocity2 = new Vector(2,2);
 		Ball ball = new Ball(circle,velocity);
-		Ball ball2 = new Ball(circle2,velocity2);
 		Ball[] balls = new Ball[] {ball};
+		
 		Point bottomright = new Point(20000,20000);
 		Color[] color = {Color.black,Color.blue};
 		PaddleState paddle = new PaddleState(center,color);
-		Rect loc1 = new Rect(p1,p2);
-		Rect loc2 = new Rect(p1,p3);
+
 		BlockState block1 = new BlockState(loc1);
-		BlockState block2 = new BlockState(loc2);
 		BlockState[] blocks = {block1};
 		BreakoutState bs = new BreakoutState(balls,blocks,bottomright,paddle);
 		bs.movePaddleLeft(1);
-		assertEquals(bs.getPaddle().getCenter(),new Point(4975,5000));
+		//paddle_vel is (15,0), dus result moet 4985 zijn
+		assertEquals(bs.getPaddle().getCenter(),new Point(4985,5000));
+		BreakoutState bs2 = new BreakoutState(balls,blocks,bottomright,paddle);
+		
+		bs2.movePaddleRight(1);
+		assertEquals(bs2.getPaddle().getCenter(),new Point(5015,5000));
 		
 		
-		
+		assertThrows(NullPointerException.class, () -> new BreakoutState(null, someblocks, BR, apad));
+		assertThrows(NullPointerException.class, () -> new BreakoutState(someballs, null , BR, apad));
+		assertThrows(NullPointerException.class, () -> new BreakoutState(someballs, someblocks, null, apad));
+		assertThrows(NullPointerException.class, () -> new BreakoutState(someballs, someblocks, BR, null));
+		assertArrayEquals(someballs, BS.getBalls() );
+		assertArrayEquals(someblocks, BS.getBlocks());
+		assertEquals(bs2.getBottomRight(), bottomright);
+		assertEquals(BS.getPaddle(), apad);
 	}
 	
-
-
+	
+		
+	@Test
+	void testPaddleColors() {
+		BS.tickDuring(100);
+		assertArrayEquals(apad.getPossibleColors(), Constants.TYPICAL_PADDLE_COLORS());
+        assertTrue(Arrays.asList(typicalColors).contains(BS.getCurPaddleColor()));
+	}
+		
+	@Test
+    public void testBounceWalls() {
+		Circle loc = aball.getLocation();
+		BreakoutState bs = GameMap.createStateFromDescription(initMap);
+		bs.tickDuring(100);
+		assertEquals(aball.getLocation(), loc);
+    }
+	
 	
 }

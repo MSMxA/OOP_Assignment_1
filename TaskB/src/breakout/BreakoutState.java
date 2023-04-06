@@ -160,7 +160,7 @@ public class BreakoutState {
 	}
 	
 	/*
-	 * Martijn: I chanegd this to prevent the ball from respawning at the middle (deleted '/2' after bottomright.getX())
+	 * Martijn: I changed this to prevent the ball from respawning at the middle (deleted '/2' after bottomright.getX())
 	 */
 	private void bounceWalls(Ball ball) {
 		for (Rect wall : walls) {

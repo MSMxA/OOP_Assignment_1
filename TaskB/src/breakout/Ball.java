@@ -70,6 +70,7 @@ public class Ball {
 	
 
 	public void move(Vector v) {
+		//not sure if this is correct, but doesn't seem to give problems in the game
 		if (v == null) {
 			velocity = new Vector(-velocity.getX(), velocity.getY());
 		}
