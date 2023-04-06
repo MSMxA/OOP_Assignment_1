@@ -28,7 +28,8 @@ class Test_Circle {
 		assertEquals(p00, c1.getCenter());
 		assertEquals(p14, c2.getCenter());
 		assertEquals(5, c1.getDiameter());
-		assertEquals(6, c2.getDiameter());	
+		assertEquals(6, c2.getDiameter());
+		assertThrows(IllegalArgumentException.class, () -> new Circle(p14, -5));
 	}
 	
 	

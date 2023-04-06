@@ -29,9 +29,8 @@ public class Circle {
 	 * Method and specs by Martijn
 	 * TODO
 	 * Constructs a circle with a given center point and diameter.
-	 * 
+	 * @throws  IllegalArgumentException if diameter is negative | diameter < 0
 	 * @pre | center != null
-	 * @pre | diameter >= 0
 	 * @post | getCenter().equals(center)
 	 * @post | getDiameter() == diameter
 	 * 

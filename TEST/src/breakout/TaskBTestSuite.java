@@ -110,7 +110,7 @@ class TaskBTestSuite {
 		//Representation leaking and Exception test in paddlestate class
 		
 	}
-	//not finished, cause don't know which function need to check for defensive programming, there exists exception and encapsulation in the class.
+	
 	@Test
 	void breakouttest() {
 		Point p1 = new Point(1,2);
@@ -145,4 +145,3 @@ class TaskBTestSuite {
 
 	
 }
-
