@@ -134,7 +134,8 @@ class TaskBTestSuite {
 		BlockState block2 = new BlockState(loc2);
 		BlockState[] blocks = {block1};
 		BreakoutState bs = new BreakoutState(balls,blocks,bottomright,paddle);
-		
+		bs.movePaddleLeft(1);
+		assertEquals(bs.getPaddle().getCenter(),new Point(4975,5000));
 		
 		
 		
