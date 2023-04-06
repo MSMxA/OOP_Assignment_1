@@ -382,7 +382,7 @@ public class BreakoutState {
 	 * Move the paddle left.
 	 */
 	public void movePaddleLeft(int elapsedTime) {
-		Point ncenter = paddle.getCenter().plus(Constants.PADDLE_VEL.scaled(-elapsedTime / 2));
+		Point ncenter = paddle.getCenter().plus(Constants.PADDLE_VEL.scaled(-elapsedTime));
 		this.paddle = new PaddleState(
 				getField().minusMargin(Constants.PADDLE_WIDTH/2,0).constrain(ncenter),
 				this.paddle.getPossibleColors()

@@ -7,6 +7,9 @@ package breakout.utils;
  * @immutable
  * @invar | getCenter() != null
  * @invar | getDiameter() >= 0
+ * @invar | getRadius() == getDiameter()/2
+ * @invar | getRightmostPoint().getX() >= getLeftmostPoint().getX()
+ * @invar | getTopmostPoint().getY() <= getBottommostPoint().getY()
  */
 public class Circle {
 	
@@ -16,8 +19,7 @@ public class Circle {
 	 * @invar | center != null
 	 * @invar | diameter >= 0
 	 * @invar | center.getX() >= 0
-	 * @invar | getCenter().equals(center)
-	 * @invar | getDiameter() == diameter
+	 * 
 	 * 
 	 */
 	private final Point center;
